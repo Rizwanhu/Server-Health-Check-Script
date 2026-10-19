@@ -1,0 +1,3 @@
+# never commit real configs or logs
+health-check.env
+*.log

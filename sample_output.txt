@@ -1,0 +1,23 @@
+$ ./health_check.sh
+== Server health: vm | 2026-10-19 09:04:26 UTC ==
+DISK     OK    / at 47% used (warn >= 80%)
+MEMORY   OK    4% used, 3810 MB free of 3997 MB (warn >= 85%)
+CPU      OK    load 0.00 on 1 core(s) = 0.00/core (warn >= 0.80)
+RESULT: OK - all checks passed
+(exit code: 0)
+
+$ DISK_WARN_PCT=40 MEM_WARN_PCT=2 ./health_check.sh   # force WARN on disk + memory
+== Server health: vm | 2026-10-19 09:04:26 UTC ==
+DISK     WARN  / at 47% used (warn >= 40%)
+MEMORY   WARN  4% used, 3810 MB free of 3997 MB (warn >= 2%)
+CPU      OK    load 0.00 on 1 core(s) = 0.00/core (warn >= 0.80)
+RESULT: WARN - 2 check(s) need attention
+(exit code: 1)
+
+$ # real CPU load: 2 busy loops for ~25s, then check
+== Server health: vm | 2026-10-19 09:04:48 UTC ==
+DISK     OK    / at 47% used (warn >= 80%)
+MEMORY   OK    4% used, 3810 MB free of 3997 MB (warn >= 85%)
+CPU      WARN  load 0.68 on 1 core(s) = 0.68/core (warn >= 0.50)
+RESULT: WARN - 1 check(s) need attention
+(exit code: 1)

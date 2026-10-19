@@ -1,0 +1,3 @@
+# Run every 5 minutes, append to a log in the user's home directory.
+# Install with: crontab -e
+*/5 * * * * /path/to/server-health-check/health_check.sh >> $HOME/health_check.log 2>&1
